@@ -7,6 +7,7 @@ Attack scenarios carry a `scenario` label; near-miss benign chains carry `nearmi
 judged against realistic false-positive bait.
 """
 import json
+import os
 import random
 from datetime import datetime, timedelta, timezone
 
@@ -117,6 +118,7 @@ def _inject_nearmisses(ev, rnd, devs, repos, hosts, days):
 
 def write(path, **kw):
     events = generate(**kw)
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)  # data/ is gitignored, so a fresh clone lacks it
     with open(path, "w") as f:
         for e in events:
             f.write(json.dumps(e) + "\n")

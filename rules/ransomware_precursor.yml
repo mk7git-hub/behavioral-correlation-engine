@@ -1,0 +1,15 @@
+name: ransomware-precursor
+description: Share enumeration, then archiving with an archiver, then a cloud-sync exfiltration tool on the same host within four hours. Mirrors the SafePay sequence (CISA AA26-293A) before encryption.
+entity: host
+window_minutes: 240
+severity: critical
+attack: [T1135, T1560.001, T1567.002]
+runbook: runbooks/ransomware-precursor.md
+stages:
+  - id: share_enumeration
+    match: {source: edr, process|contains: [sharefinder, sharpshares, "net view"]}
+    min_count: 1
+  - id: archive
+    match: {source: edr, process|contains: [7z, winrar, rar.exe]}
+  - id: cloud_sync
+    match: {source: edr, process|contains: [rclone, b2.exe]}

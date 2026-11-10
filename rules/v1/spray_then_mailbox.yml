@@ -1,0 +1,17 @@
+name: spray-to-mailbox-access
+description: Failed sign-ins against many distinct accounts from one IP, then a successful sign-in, then mailbox items read from the same IP. Separates a spray that worked from the constant background of sprays that failed (CISA AA26-281A pattern).
+entity: src_ip
+window_minutes: 60
+severity: high
+attack: [T1110.003, T1078.004, T1114.002]
+runbook: runbooks/spray-to-mailbox-access.md
+stages:
+  - id: spray
+    match: {source: idp, result: failure}
+    min_count: 3
+    distinct: user
+    min_distinct: 3
+  - id: success
+    match: {source: idp, result: success}
+  - id: mailbox_read
+    match: {source: m365, operation: MailItemsAccessed}

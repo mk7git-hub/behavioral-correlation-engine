@@ -1,0 +1,17 @@
+name: token-to-cloud-theft
+description: New personal access token, then a mass clone of distinct repositories, then an AWS role assumed from an IP never seen for that identity. Each step alone is routine for developers; together they match source-code theft followed by cloud access.
+entity: actor                   # identity normalized across GitHub and AWS (SSO email)
+window_minutes: 60
+severity: critical
+attack: [T1528, T1213.003, T1078.004]
+runbook: runbooks/token-to-cloud-theft.md
+stages:
+  - id: token_created
+    match: {source: github, action: personal_access_token.create}
+  - id: mass_clone
+    match: {source: github, action: git.clone}
+    min_count: 20
+    distinct: repo
+    min_distinct: 15
+  - id: role_from_new_ip
+    match: {source: aws, eventName: AssumeRole, enrich.new_ip_for_actor: true}

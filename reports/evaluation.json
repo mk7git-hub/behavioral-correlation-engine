@@ -1,0 +1,102 @@
+{
+  "v1": [
+    {
+      "rule": "ransomware-precursor",
+      "atomic_alerts": 163,
+      "atomic_alerts_from_attacks": 9,
+      "composite_alerts": 16,
+      "tp": 3,
+      "fp": 13,
+      "recall": "3/3",
+      "precision": 0.19,
+      "snr": "3:13",
+      "alert_reduction_pct": 90.18,
+      "median_minutes_to_detect": 90.0,
+      "fp_examples": [
+        "BKP-01"
+      ]
+    },
+    {
+      "rule": "spray-to-mailbox-access",
+      "atomic_alerts": 11101,
+      "atomic_alerts_from_attacks": 81,
+      "composite_alerts": 6,
+      "tp": 3,
+      "fp": 3,
+      "recall": "3/3",
+      "precision": 0.5,
+      "snr": "3:3",
+      "alert_reduction_pct": 99.95,
+      "median_minutes_to_detect": 28.0,
+      "fp_examples": [
+        "10.99.0.1",
+        "10.99.0.2",
+        "10.99.0.3"
+      ]
+    },
+    {
+      "rule": "token-to-cloud-theft",
+      "atomic_alerts": 15561,
+      "atomic_alerts_from_attacks": 126,
+      "composite_alerts": 11,
+      "tp": 3,
+      "fp": 8,
+      "recall": "3/3",
+      "precision": 0.27,
+      "snr": "3:8",
+      "alert_reduction_pct": 99.93,
+      "median_minutes_to_detect": 35.0,
+      "fp_examples": [
+        "dev001@corp.example",
+        "dev016@corp.example",
+        "dev044@corp.example",
+        "dev129@corp.example",
+        "dev130@corp.example"
+      ]
+    }
+  ],
+  "tuned": [
+    {
+      "rule": "ransomware-precursor",
+      "atomic_alerts": 149,
+      "atomic_alerts_from_attacks": 9,
+      "composite_alerts": 3,
+      "tp": 3,
+      "fp": 0,
+      "recall": "3/3",
+      "precision": 1.0,
+      "snr": "3:0",
+      "alert_reduction_pct": 97.99,
+      "median_minutes_to_detect": 90.0,
+      "fp_examples": []
+    },
+    {
+      "rule": "spray-to-mailbox-access",
+      "atomic_alerts": 11101,
+      "atomic_alerts_from_attacks": 81,
+      "composite_alerts": 3,
+      "tp": 3,
+      "fp": 0,
+      "recall": "3/3",
+      "precision": 1.0,
+      "snr": "3:0",
+      "alert_reduction_pct": 99.97,
+      "median_minutes_to_detect": 28.0,
+      "fp_examples": []
+    },
+    {
+      "rule": "token-to-cloud-theft",
+      "atomic_alerts": 14372,
+      "atomic_alerts_from_attacks": 126,
+      "composite_alerts": 3,
+      "tp": 3,
+      "fp": 0,
+      "recall": "3/3",
+      "precision": 1.0,
+      "snr": "3:0",
+      "alert_reduction_pct": 99.98,
+      "median_minutes_to_detect": 35.0,
+      "fp_examples": []
+    }
+  ]
+}
